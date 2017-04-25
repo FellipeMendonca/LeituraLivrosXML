@@ -9,8 +9,8 @@ namespace LeituraLivrosXML.Manipuladores
 {
     public class LerArquivo
     {
-        private static string caminhoBiblia = AppDomain.CurrentDomain + "Biblia.txt";
-        private static string caminhoAlcorao = AppDomain.CurrentDomain + "Alcorao.txt";
+        private static string caminhoBiblia = AppDomain.CurrentDomain.BaseDirectory + "Biblia.txt";
+        private static string caminhoAlcorao = AppDomain.CurrentDomain.BaseDirectory + "Alcorao.txt";
 
         public static string LerBiblia(string livro, string capitulo, string versiculo)
         {
@@ -22,11 +22,70 @@ namespace LeituraLivrosXML.Manipuladores
             bool acheiversiculo = false;
             // Retorno
             string versiculoEncontrado = "";
-
-
-
+            if (File.Exists(caminhoBiblia))
+            {
+                using (StreamReader leitor = File.OpenText(caminhoBiblia))
+                {
+                    while (leitor.Peek() >= 0)
+                    {
+                        string frase = leitor.ReadLine();
+                        if (frase != "")
+                        {
+                            if (frase.ToUpper() == livroUpper)
+                            {
+                                versiculoEncontrado += frase + " - ";
+                                acheiLivro = true;
+                            }
+                            else if (frase.ToUpper() == capituloBusca && acheiLivro)
+                            {
+                                versiculoEncontrado += frase + " - ";
+                                acheiCapitulo = true;
+                            }
+                            else if (frase.Contains(versiculo) && acheiLivro && acheiCapitulo)
+                            {
+                                versiculoEncontrado += frase;
+                                acheiversiculo = true;
+                            }
+                            if (acheiLivro && acheiCapitulo && acheiversiculo)
+                            {
+                                return versiculoEncontrado;
+                            }
+                        }
+                    }
+                    if (acheiLivro == false || acheiCapitulo == false || acheiversiculo == false)
+                    {
+                        versiculoEncontrado = "";
+                    }
+                }
+            }
             return versiculoEncontrado;
         }
 
+        public static string LerAlcorao(string idSurata, string versiculo)
+        {
+            string palavraBusca = "Alc." + idSurata + "." + versiculo;
+            string versiculoEncontrado = "";
+
+            if (File.Exists(caminhoAlcorao))
+            {
+                using (StreamReader leitor = File.OpenText(caminhoAlcorao))
+                {
+                    while (leitor.Peek() >= 0)
+                    {
+                        string frase = leitor.ReadLine();
+                        if (frase != "")
+                        {
+                            if (frase.Contains(palavraBusca))
+                            {
+                                versiculoEncontrado = frase;
+                                return versiculoEncontrado;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return versiculoEncontrado;
+        }
     }
 }

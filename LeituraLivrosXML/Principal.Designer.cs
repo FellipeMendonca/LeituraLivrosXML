@@ -171,6 +171,7 @@
             this.btnProcuraAlcorao.TabIndex = 4;
             this.btnProcuraAlcorao.Text = "Procurar";
             this.btnProcuraAlcorao.UseVisualStyleBackColor = true;
+            this.btnProcuraAlcorao.Click += new System.EventHandler(this.btnProcuraAlcorao_Click);
             // 
             // txbVersiculoAlcorao
             // 
