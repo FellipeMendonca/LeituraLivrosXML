@@ -15,11 +15,16 @@ namespace LeituraLivrosXML
         public frmPrincipal()
         {
             InitializeComponent();
+            foreach (string livro in Livros.LivrosBiblia())
+            {
+                cbxLivrosBiblia.Items.Add(livro);
+            }
+            cbxSurata.DataSource = Livros.LivrosAlcorao();
         }
 
         private void btnProcuraBiblia_Click(object sender, EventArgs e)
         {
-            lblLivro.Text = "fdfdf";
+            
         }
     }
 }

@@ -32,10 +32,10 @@
             this.tbpBiblia = new System.Windows.Forms.TabPage();
             this.tbpAlcorao = new System.Windows.Forms.TabPage();
             this.tbpNotas = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvNotas = new System.Windows.Forms.DataGridView();
             this.lblSurata = new System.Windows.Forms.Label();
             this.cbxSurata = new System.Windows.Forms.ComboBox();
-            this.lblVersiculoAlcorao = new System.Windows.Forms.Label();
+            this.lblVersoAlcorao = new System.Windows.Forms.Label();
             this.txbVersiculoAlcorao = new System.Windows.Forms.TextBox();
             this.btnProcuraAlcorao = new System.Windows.Forms.Button();
             this.lblLivro = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txbVersiculoBiblia = new System.Windows.Forms.TextBox();
             this.lblVersiculo = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxLivrosBiblia = new System.Windows.Forms.ComboBox();
             this.btnProcuraBiblia = new System.Windows.Forms.Button();
             this.btnExcluirNota = new System.Windows.Forms.Button();
             this.btnEditarNota = new System.Windows.Forms.Button();
@@ -51,7 +51,7 @@
             this.tbpBiblia.SuspendLayout();
             this.tbpAlcorao.SuspendLayout();
             this.tbpNotas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotas)).BeginInit();
             this.SuspendLayout();
             // 
             // tbcPrincipal
@@ -68,7 +68,7 @@
             // tbpBiblia
             // 
             this.tbpBiblia.Controls.Add(this.btnProcuraBiblia);
-            this.tbpBiblia.Controls.Add(this.comboBox1);
+            this.tbpBiblia.Controls.Add(this.cbxLivrosBiblia);
             this.tbpBiblia.Controls.Add(this.txbVersiculoBiblia);
             this.tbpBiblia.Controls.Add(this.lblVersiculo);
             this.tbpBiblia.Controls.Add(this.txbCapituloBiblia);
@@ -86,7 +86,7 @@
             // 
             this.tbpAlcorao.Controls.Add(this.btnProcuraAlcorao);
             this.tbpAlcorao.Controls.Add(this.txbVersiculoAlcorao);
-            this.tbpAlcorao.Controls.Add(this.lblVersiculoAlcorao);
+            this.tbpAlcorao.Controls.Add(this.lblVersoAlcorao);
             this.tbpAlcorao.Controls.Add(this.cbxSurata);
             this.tbpAlcorao.Controls.Add(this.lblSurata);
             this.tbpAlcorao.Location = new System.Drawing.Point(4, 22);
@@ -101,7 +101,7 @@
             // 
             this.tbpNotas.Controls.Add(this.btnEditarNota);
             this.tbpNotas.Controls.Add(this.btnExcluirNota);
-            this.tbpNotas.Controls.Add(this.dataGridView1);
+            this.tbpNotas.Controls.Add(this.dgvNotas);
             this.tbpNotas.Location = new System.Drawing.Point(4, 22);
             this.tbpNotas.Name = "tbpNotas";
             this.tbpNotas.Padding = new System.Windows.Forms.Padding(3);
@@ -110,13 +110,13 @@
             this.tbpNotas.Text = "Notas";
             this.tbpNotas.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgvNotas
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 6);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 169);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvNotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNotas.Location = new System.Drawing.Point(6, 6);
+            this.dgvNotas.Name = "dgvNotas";
+            this.dgvNotas.Size = new System.Drawing.Size(240, 169);
+            this.dgvNotas.TabIndex = 0;
             // 
             // lblSurata
             // 
@@ -136,15 +136,15 @@
             this.cbxSurata.Size = new System.Drawing.Size(110, 21);
             this.cbxSurata.TabIndex = 1;
             // 
-            // lblVersiculoAlcorao
+            // lblVersoAlcorao
             // 
-            this.lblVersiculoAlcorao.AutoSize = true;
-            this.lblVersiculoAlcorao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblVersiculoAlcorao.Location = new System.Drawing.Point(6, 82);
-            this.lblVersiculoAlcorao.Name = "lblVersiculoAlcorao";
-            this.lblVersiculoAlcorao.Size = new System.Drawing.Size(137, 17);
-            this.lblVersiculoAlcorao.TabIndex = 2;
-            this.lblVersiculoAlcorao.Text = "Informe o Versiculo: ";
+            this.lblVersoAlcorao.AutoSize = true;
+            this.lblVersoAlcorao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblVersoAlcorao.Location = new System.Drawing.Point(6, 82);
+            this.lblVersoAlcorao.Name = "lblVersoAlcorao";
+            this.lblVersoAlcorao.Size = new System.Drawing.Size(116, 17);
+            this.lblVersoAlcorao.TabIndex = 2;
+            this.lblVersoAlcorao.Text = "Informe o Verso: ";
             // 
             // txbVersiculoAlcorao
             // 
@@ -208,13 +208,13 @@
             this.lblVersiculo.TabIndex = 4;
             this.lblVersiculo.Text = "Informe o Versiculo: ";
             // 
-            // comboBox1
+            // cbxLivrosBiblia
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(131, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(115, 21);
-            this.comboBox1.TabIndex = 6;
+            this.cbxLivrosBiblia.FormattingEnabled = true;
+            this.cbxLivrosBiblia.Location = new System.Drawing.Point(131, 19);
+            this.cbxLivrosBiblia.Name = "cbxLivrosBiblia";
+            this.cbxLivrosBiblia.Size = new System.Drawing.Size(115, 21);
+            this.cbxLivrosBiblia.TabIndex = 6;
             // 
             // btnProcuraBiblia
             // 
@@ -260,7 +260,7 @@
             this.tbpAlcorao.ResumeLayout(false);
             this.tbpAlcorao.PerformLayout();
             this.tbpNotas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,12 +273,12 @@
         private System.Windows.Forms.ComboBox cbxSurata;
         private System.Windows.Forms.Label lblSurata;
         private System.Windows.Forms.TabPage tbpNotas;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvNotas;
         private System.Windows.Forms.TextBox txbVersiculoAlcorao;
-        private System.Windows.Forms.Label lblVersiculoAlcorao;
+        private System.Windows.Forms.Label lblVersoAlcorao;
         private System.Windows.Forms.Button btnProcuraAlcorao;
         private System.Windows.Forms.Button btnProcuraBiblia;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxLivrosBiblia;
         private System.Windows.Forms.TextBox txbVersiculoBiblia;
         private System.Windows.Forms.Label lblVersiculo;
         private System.Windows.Forms.TextBox txbCapituloBiblia;
