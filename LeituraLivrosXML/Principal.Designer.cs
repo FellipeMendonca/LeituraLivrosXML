@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbcPrincipal = new System.Windows.Forms.TabControl();
             this.tbpBiblia = new System.Windows.Forms.TabPage();
             this.btnProcuraBiblia = new System.Windows.Forms.Button();
@@ -179,6 +180,7 @@
             this.txbVersiculoAlcorao.Name = "txbVersiculoAlcorao";
             this.txbVersiculoAlcorao.Size = new System.Drawing.Size(100, 20);
             this.txbVersiculoAlcorao.TabIndex = 3;
+            this.txbVersiculoAlcorao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblVersoAlcorao
             // 
@@ -232,6 +234,7 @@
             this.btnEditarNota.TabIndex = 2;
             this.btnEditarNota.Text = "Editar Nota";
             this.btnEditarNota.UseVisualStyleBackColor = true;
+            this.btnEditarNota.Click += new System.EventHandler(this.btnEditarNota_Click);
             // 
             // btnExcluirNota
             // 
@@ -242,12 +245,29 @@
             this.btnExcluirNota.TabIndex = 1;
             this.btnExcluirNota.Text = "Excluir Nota";
             this.btnExcluirNota.UseVisualStyleBackColor = true;
+            this.btnExcluirNota.Click += new System.EventHandler(this.btnExcluirNota_Click);
             // 
             // dgvNotas
             // 
+            this.dgvNotas.AllowUserToAddRows = false;
+            this.dgvNotas.AllowUserToDeleteRows = false;
+            this.dgvNotas.AllowUserToResizeColumns = false;
+            this.dgvNotas.AllowUserToResizeRows = false;
+            this.dgvNotas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvNotas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvNotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNotas.Location = new System.Drawing.Point(6, 6);
             this.dgvNotas.Name = "dgvNotas";
+            this.dgvNotas.ReadOnly = true;
+            this.dgvNotas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvNotas.Size = new System.Drawing.Size(240, 169);
             this.dgvNotas.TabIndex = 0;
             // 

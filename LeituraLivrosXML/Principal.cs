@@ -18,8 +18,36 @@ namespace LeituraLivrosXML
             cbxLivrosBiblia.DataSource = Livros.LivrosBiblia();
             cbxSurata.DataSource = Livros.LivrosAlcorao();
             CarregarDGV(dgvNotas);
+            dgvNotas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        }
+        // Metodos de Serviço
+        private static DialogResult ObterResposta(string mensagem, string titulo)
+        {
+            DialogResult resposta = MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo);
+            return resposta;
         }
 
+        private void CarregarDGV(DataGridView dgv)
+        {
+            dgv.DataSource = Manipuladores.ManipularXML.LerNotas();
+            dgv.Columns["id"].Visible = false;
+            // Configurações DGV
+            for (int i = 0; i < dgv.Columns.Count; i++)
+            {
+                dgv.Columns[i].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dgv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+        private void LimparCampos()
+        {
+            txbCapituloBiblia.Text = "";
+            txbVersiculoAlcorao.Text = "";
+            txbVersiculoBiblia.Text = "";
+            cbxLivrosBiblia.Text = "";
+            cbxSurata.Text = "";
+        }
+        // Metodos do Tipo Botão
         private void btnProcuraBiblia_Click(object sender, EventArgs e)
         {
             string livro = cbxLivrosBiblia.SelectedItem.ToString();
@@ -33,8 +61,20 @@ namespace LeituraLivrosXML
                 {
                     if (DialogResult.Yes == ObterResposta("Deseja comentar?", "Versiculo Encontrado"))
                     {
-                        // abrir tela resultado
+                        Nota nota = new Nota();
+                        nota.Id = dgvNotas.Rows.Count.ToString();
+                        nota.Livro = "Biblia";
+                        nota.Comentario = "";
+                        nota.Versiculo = versiculoEncontrado;
+                        Resultado telaResultado = new Resultado(nota, false);
+                        telaResultado.ShowDialog();
+                        CarregarDGV(dgvNotas);
                     }
+                    else
+                    {
+                        MessageBox.Show(versiculoEncontrado, "Versiculo");
+                    }
+                    LimparCampos();
                 }
             }
             else
@@ -53,23 +93,53 @@ namespace LeituraLivrosXML
             {
                 if (DialogResult.Yes == ObterResposta("Deseja comentar?", "Versiculo Encontrado"))
                 {
-                    // abrir tela resultado
+                    Nota nota = new Nota();
+                    nota.Id = dgvNotas.Rows.Count.ToString();
+                    nota.Livro = "Alcorao";
+                    nota.Comentario = "";
+                    nota.Versiculo = versiculoEncontrado;
+                    Resultado telaResultado = new Resultado(nota, false);
+                    telaResultado.ShowDialog();
+                    CarregarDGV(dgvNotas);
                 }
+                else
+                {
+                    MessageBox.Show(versiculoEncontrado, "Versiculo");
+                }
+                LimparCampos();
             }
             else
             {
                 MessageBox.Show("Preencha todos os campos!!", "Erro");
             }
         }
-        private static DialogResult ObterResposta(string mensagem, string titulo)
+
+
+
+        private void btnExcluirNota_Click(object sender, EventArgs e)
         {
-            DialogResult resposta = MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo);
-            return resposta;
+            if (DialogResult.Yes == ObterResposta("Deseja excluir?", "Confirmação"))
+            {
+                Nota nota = new Nota();
+                nota.Id = dgvNotas.CurrentRow.Cells[0].Value.ToString();
+                nota.Livro = dgvNotas.CurrentRow.Cells[1].Value.ToString();
+                nota.Versiculo = dgvNotas.CurrentRow.Cells[2].Value.ToString();
+                nota.Comentario = dgvNotas.CurrentRow.Cells[3].Value.ToString();
+                Manipuladores.ManipularXML.ExcluirNota(nota);
+            }
+            CarregarDGV(dgvNotas);
         }
 
-        private void CarregarDGV(DataGridView dgv)
+        private void btnEditarNota_Click(object sender, EventArgs e)
         {
-            dgv.DataSource = Manipuladores.ManipularXML.LerNotas();
+            Nota nota = new Nota();
+            nota.Id = dgvNotas.CurrentRow.Cells[0].Value.ToString();
+            nota.Livro = dgvNotas.CurrentRow.Cells[1].Value.ToString();
+            nota.Versiculo = dgvNotas.CurrentRow.Cells[2].Value.ToString();
+            nota.Comentario = dgvNotas.CurrentRow.Cells[3].Value.ToString();
+            Resultado telaResultado = new Resultado(nota, true);
+            telaResultado.ShowDialog();
+            CarregarDGV(dgvNotas);
         }
     }
 }

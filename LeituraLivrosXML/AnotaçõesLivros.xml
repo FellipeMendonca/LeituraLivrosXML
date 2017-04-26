@@ -1,7 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <biblioteca>
   <anotacoes>
-    <anotacao id="0" livro ="Biblia" versiculo =" GÊNESIS - GÊNESIS [1] - 1 No princípio criou Deus os céus e a terra." comentario ="Comentario Biblia"/>
-    <anotacao id="1" livro ="Alcorao" versiculo =" Alc.1.1- Em nome de Deus, o Clemente, o Misericordioso." comentario ="Comentario Alcorao"/>
+    <anotacao id="0" livro="Biblia" versiculo=" GÊNESIS - GÊNESIS [1] - 1 No princípio criou Deus os céus e a terra." comentario="Comentario Biblia" />
+    <anotacao id="1" livro="Alcorao" versiculo=" Alc.1.1- Em nome de Deus, o Clemente, o Misericordioso." comentario="Comentario Alcorao" />
+    <anotacao id="2" livro="Biblia" versiculo="GÊNESIS - GÊNESIS [4] - 3 Ao cabo de dias trouxe Caim do fruto da terra uma oferta ao Senhor." comentario="wsws" />
+    <anotacao id="3" livro="Biblia" versiculo="SALMOS - SALMOS [2] - 2 Os reis da terra se levantam, e os príncipes juntos conspiram contra o Senhor e contra o seu ungido, dizendo:" comentario="222" />
   </anotacoes>
 </biblioteca>

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.lblVersiculoEncontrado = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txbVersiculo = new System.Windows.Forms.TextBox();
             this.lblComentario = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txbComentario = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -46,13 +46,14 @@
             this.lblVersiculoEncontrado.TabIndex = 0;
             this.lblVersiculoEncontrado.Text = "Versiculo Encontrado: ";
             // 
-            // textBox1
+            // txbVersiculo
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 29);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(260, 73);
-            this.textBox1.TabIndex = 1;
+            this.txbVersiculo.Enabled = false;
+            this.txbVersiculo.Location = new System.Drawing.Point(12, 29);
+            this.txbVersiculo.Multiline = true;
+            this.txbVersiculo.Name = "txbVersiculo";
+            this.txbVersiculo.Size = new System.Drawing.Size(260, 73);
+            this.txbVersiculo.TabIndex = 1;
             // 
             // lblComentario
             // 
@@ -64,13 +65,13 @@
             this.lblComentario.TabIndex = 2;
             this.lblComentario.Text = "Comentário";
             // 
-            // textBox2
+            // txbComentario
             // 
-            this.textBox2.Location = new System.Drawing.Point(14, 137);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(260, 61);
-            this.textBox2.TabIndex = 3;
+            this.txbComentario.Location = new System.Drawing.Point(14, 137);
+            this.txbComentario.Multiline = true;
+            this.txbComentario.Name = "txbComentario";
+            this.txbComentario.Size = new System.Drawing.Size(260, 61);
+            this.txbComentario.TabIndex = 3;
             // 
             // btnSalvar
             // 
@@ -81,6 +82,7 @@
             this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnVoltar
             // 
@@ -99,9 +101,9 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnSalvar);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txbComentario);
             this.Controls.Add(this.lblComentario);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txbVersiculo);
             this.Controls.Add(this.lblVersiculoEncontrado);
             this.Name = "Resultado";
             this.Text = "Resultado";
@@ -113,9 +115,9 @@
         #endregion
 
         private System.Windows.Forms.Label lblVersiculoEncontrado;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbVersiculo;
         private System.Windows.Forms.Label lblComentario;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txbComentario;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnVoltar;
     }
