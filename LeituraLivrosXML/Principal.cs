@@ -18,7 +18,7 @@ namespace LeituraLivrosXML
             cbxLivrosBiblia.DataSource = Livros.LivrosBiblia();
             cbxSurata.DataSource = Livros.LivrosAlcorao();
             CarregarDGV(dgvNotas);
-            dgvNotas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvNotas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;            
         }
         // Metodos de Serviço
         private static DialogResult ObterResposta(string mensagem, string titulo)
@@ -37,6 +37,11 @@ namespace LeituraLivrosXML
                 dgv.Columns[i].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dgv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                if (i == 3)
+                {
+                    dgv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                }
+                
             }
         }
         private void LimparCampos()
@@ -66,6 +71,7 @@ namespace LeituraLivrosXML
                         nota.Livro = "Biblia";
                         nota.Comentario = "";
                         nota.Versiculo = versiculoEncontrado;
+                        nota.Data = DateTime.Now.ToShortDateString();
                         Resultado telaResultado = new Resultado(nota, false);
                         telaResultado.ShowDialog();
                         CarregarDGV(dgvNotas);
@@ -98,6 +104,7 @@ namespace LeituraLivrosXML
                     nota.Livro = "Alcorao";
                     nota.Comentario = "";
                     nota.Versiculo = versiculoEncontrado;
+                    nota.Data = DateTime.Now.ToShortDateString();
                     Resultado telaResultado = new Resultado(nota, false);
                     telaResultado.ShowDialog();
                     CarregarDGV(dgvNotas);
@@ -125,6 +132,7 @@ namespace LeituraLivrosXML
                 nota.Livro = dgvNotas.CurrentRow.Cells[1].Value.ToString();
                 nota.Versiculo = dgvNotas.CurrentRow.Cells[2].Value.ToString();
                 nota.Comentario = dgvNotas.CurrentRow.Cells[3].Value.ToString();
+                nota.Data = dgvNotas.CurrentRow.Cells[4].Value.ToString();
                 Manipuladores.ManipularXML.ExcluirNota(nota);
             }
             CarregarDGV(dgvNotas);
@@ -134,9 +142,10 @@ namespace LeituraLivrosXML
         {
             Nota nota = new Nota();
             nota.Id = dgvNotas.CurrentRow.Cells[0].Value.ToString();
-            nota.Livro = dgvNotas.CurrentRow.Cells[1].Value.ToString();
-            nota.Versiculo = dgvNotas.CurrentRow.Cells[2].Value.ToString();
-            nota.Comentario = dgvNotas.CurrentRow.Cells[3].Value.ToString();
+            nota.Data = DateTime.Now.ToShortDateString();
+            nota.Livro = dgvNotas.CurrentRow.Cells[2].Value.ToString();
+            nota.Versiculo = dgvNotas.CurrentRow.Cells[3].Value.ToString();
+            nota.Comentario = dgvNotas.CurrentRow.Cells[4].Value.ToString();
             Resultado telaResultado = new Resultado(nota, true);
             telaResultado.ShowDialog();
             CarregarDGV(dgvNotas);

@@ -22,6 +22,7 @@ namespace LeituraLivrosXML.Manipuladores
             {
                 Nota nota = new Nota();
                 nota.Id = noNota.Attributes["id"].Value;
+                nota.Data = noNota.Attributes["data"].Value;
                 nota.Livro = noNota.Attributes["livro"].Value;
                 nota.Versiculo = noNota.Attributes["versiculo"].Value;
                 nota.Comentario = noNota.Attributes["comentario"].Value;
@@ -37,18 +38,21 @@ namespace LeituraLivrosXML.Manipuladores
             arquivoXML.Load(caminhoXML);
             XmlAttribute atributoID = arquivoXML.CreateAttribute("id");
             atributoID.Value = nota.Id.ToString();
+            XmlAttribute atributoData = arquivoXML.CreateAttribute("data");
+            atributoData.Value = nota.Data;
             XmlAttribute atributoLivro = arquivoXML.CreateAttribute("livro");
             atributoLivro.Value = nota.Livro;
             XmlAttribute atributoVersiculo = arquivoXML.CreateAttribute("versiculo");
             atributoVersiculo.Value = nota.Versiculo;
-            XmlAttribute atributloComentario = arquivoXML.CreateAttribute("comentario");
-            atributloComentario.Value = nota.Comentario;
+            XmlAttribute atributoComentario = arquivoXML.CreateAttribute("comentario");
+            atributoComentario.Value = nota.Comentario;
 
             XmlNode novaNota = arquivoXML.CreateElement("anotacao");
             novaNota.Attributes.Append(atributoID);
+            novaNota.Attributes.Append(atributoData);
             novaNota.Attributes.Append(atributoLivro);
             novaNota.Attributes.Append(atributoVersiculo);
-            novaNota.Attributes.Append(atributloComentario);
+            novaNota.Attributes.Append(atributoComentario);
 
             XmlNode anotacoes = arquivoXML.SelectSingleNode("/biblioteca/anotacoes");
             anotacoes.AppendChild(novaNota);
@@ -66,6 +70,7 @@ namespace LeituraLivrosXML.Manipuladores
             {
                 if (noNota.Attributes["id"].Value == nota.Id.ToString())
                 {
+                    noNota.Attributes["data"].Value = nota.Data;
                     noNota.Attributes["livro"].Value = nota.Livro;
                     noNota.Attributes["versiculo"].Value = nota.Versiculo;
                     noNota.Attributes["comentario"].Value = nota.Comentario;
