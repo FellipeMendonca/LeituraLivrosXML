@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbcPrincipal = new System.Windows.Forms.TabControl();
             this.tbpBiblia = new System.Windows.Forms.TabPage();
             this.btnProcuraBiblia = new System.Windows.Forms.Button();
@@ -48,11 +48,13 @@
             this.btnEditarNota = new System.Windows.Forms.Button();
             this.btnExcluirNota = new System.Windows.Forms.Button();
             this.dgvNotas = new System.Windows.Forms.DataGridView();
+            this.picbAlcorao = new System.Windows.Forms.PictureBox();
             this.tbcPrincipal.SuspendLayout();
             this.tbpBiblia.SuspendLayout();
             this.tbpAlcorao.SuspendLayout();
             this.tbpNotas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbAlcorao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbcPrincipal
@@ -151,6 +153,7 @@
             // 
             // tbpAlcorao
             // 
+            this.tbpAlcorao.Controls.Add(this.picbAlcorao);
             this.tbpAlcorao.Controls.Add(this.btnProcuraAlcorao);
             this.tbpAlcorao.Controls.Add(this.txbVersiculoAlcorao);
             this.tbpAlcorao.Controls.Add(this.lblVersoAlcorao);
@@ -176,7 +179,7 @@
             // 
             // txbVersiculoAlcorao
             // 
-            this.txbVersiculoAlcorao.Location = new System.Drawing.Point(172, 154);
+            this.txbVersiculoAlcorao.Location = new System.Drawing.Point(172, 175);
             this.txbVersiculoAlcorao.Name = "txbVersiculoAlcorao";
             this.txbVersiculoAlcorao.Size = new System.Drawing.Size(110, 20);
             this.txbVersiculoAlcorao.TabIndex = 3;
@@ -186,7 +189,7 @@
             // 
             this.lblVersoAlcorao.AutoSize = true;
             this.lblVersoAlcorao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblVersoAlcorao.Location = new System.Drawing.Point(19, 155);
+            this.lblVersoAlcorao.Location = new System.Drawing.Point(19, 176);
             this.lblVersoAlcorao.Name = "lblVersoAlcorao";
             this.lblVersoAlcorao.Size = new System.Drawing.Size(116, 17);
             this.lblVersoAlcorao.TabIndex = 2;
@@ -197,7 +200,7 @@
             this.cbxSurata.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxSurata.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxSurata.FormattingEnabled = true;
-            this.cbxSurata.Location = new System.Drawing.Point(172, 103);
+            this.cbxSurata.Location = new System.Drawing.Point(172, 124);
             this.cbxSurata.Name = "cbxSurata";
             this.cbxSurata.Size = new System.Drawing.Size(110, 21);
             this.cbxSurata.TabIndex = 1;
@@ -206,7 +209,7 @@
             // 
             this.lblSurata.AutoSize = true;
             this.lblSurata.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblSurata.Location = new System.Drawing.Point(19, 104);
+            this.lblSurata.Location = new System.Drawing.Point(19, 125);
             this.lblSurata.Name = "lblSurata";
             this.lblSurata.Size = new System.Drawing.Size(136, 17);
             this.lblSurata.TabIndex = 0;
@@ -255,14 +258,14 @@
             this.dgvNotas.AllowUserToResizeRows = false;
             this.dgvNotas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvNotas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvNotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNotas.Location = new System.Drawing.Point(6, 6);
             this.dgvNotas.Name = "dgvNotas";
@@ -270,6 +273,14 @@
             this.dgvNotas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvNotas.Size = new System.Drawing.Size(292, 253);
             this.dgvNotas.TabIndex = 0;
+            // 
+            // picbAlcorao
+            // 
+            this.picbAlcorao.Location = new System.Drawing.Point(22, 20);
+            this.picbAlcorao.Name = "picbAlcorao";
+            this.picbAlcorao.Size = new System.Drawing.Size(260, 65);
+            this.picbAlcorao.TabIndex = 5;
+            this.picbAlcorao.TabStop = false;
             // 
             // frmPrincipal
             // 
@@ -286,6 +297,7 @@
             this.tbpAlcorao.PerformLayout();
             this.tbpNotas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbAlcorao)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -311,6 +323,7 @@
         private System.Windows.Forms.Label lblLivro;
         private System.Windows.Forms.Button btnEditarNota;
         private System.Windows.Forms.Button btnExcluirNota;
+        private System.Windows.Forms.PictureBox picbAlcorao;
     }
 }
 

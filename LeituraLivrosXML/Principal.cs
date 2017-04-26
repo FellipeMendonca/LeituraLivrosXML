@@ -15,10 +15,9 @@ namespace LeituraLivrosXML
         public frmPrincipal()
         {
             InitializeComponent();
-            cbxLivrosBiblia.DataSource = Livros.LivrosBiblia();
-            cbxSurata.DataSource = Livros.LivrosAlcorao();
+            CarregarCBX();
             CarregarDGV(dgvNotas);
-            dgvNotas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;            
+            CarregarPICBOX(picbAlcorao, @"C:\Users\Natsu\OneDrive\Documentos\FotoPerfil.jpg");
         }
         // Metodos de Serviço
         private static DialogResult ObterResposta(string mensagem, string titulo)
@@ -31,6 +30,7 @@ namespace LeituraLivrosXML
         {
             dgv.DataSource = Manipuladores.ManipularXML.LerNotas();
             dgv.Columns["id"].Visible = false;
+            dgvNotas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // Configurações DGV
             for (int i = 0; i < dgv.Columns.Count; i++)
             {
@@ -41,16 +41,24 @@ namespace LeituraLivrosXML
                 {
                     dgv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 }
-                
+
             }
+        }
+        public void CarregarCBX()
+        {
+            cbxLivrosBiblia.DataSource = Livros.LivrosBiblia();
+            cbxSurata.DataSource = Livros.LivrosAlcorao();
+        }
+        private void CarregarPICBOX(PictureBox picbox, string caminhoImagem)
+        {
+            picbox.ImageLocation = caminhoImagem;
+            picbox.SizeMode = PictureBoxSizeMode.Zoom;
         }
         private void LimparCampos()
         {
             txbCapituloBiblia.Text = "";
             txbVersiculoAlcorao.Text = "";
             txbVersiculoBiblia.Text = "";
-            cbxLivrosBiblia.Text = "";
-            cbxSurata.Text = "";
         }
         // Metodos do Tipo Botão
         private void btnProcuraBiblia_Click(object sender, EventArgs e)
