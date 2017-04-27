@@ -9,8 +9,8 @@ namespace LeituraLivrosXML.Manipuladores
 {
     public class LerArquivo
     {
-        private static string caminhoBiblia = AppDomain.CurrentDomain.BaseDirectory + "Biblia.txt";
-        private static string caminhoAlcorao = AppDomain.CurrentDomain.BaseDirectory + "Alcorao.txt";
+        private static string caminhoBiblia = AppDomain.CurrentDomain.BaseDirectory + @"/Livros/Biblia.txt";
+        private static string caminhoAlcorao = AppDomain.CurrentDomain.BaseDirectory + @"/Livros/Alcorao.txt";
 
         public static string LerBiblia(string livro, string capitulo, string versiculo)
         {

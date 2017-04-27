@@ -17,7 +17,11 @@ namespace LeituraLivrosXML
             InitializeComponent();
             CarregarCBX();
             CarregarDGV(dgvNotas);
-            CarregarPICBOX(picbAlcorao, @"C:\Users\Natsu\OneDrive\Documentos\FotoPerfil.jpg");
+            CarregarPICBOX(picbAlcorao, AppDomain.CurrentDomain.BaseDirectory + @"/Imagens/ImagemAlcorao.png", PictureBoxSizeMode.StretchImage);
+            CarregarPICBOX(picbBiblia, AppDomain.CurrentDomain.BaseDirectory + @"/Imagens/ImagemBiblia.png", PictureBoxSizeMode.StretchImage);
+            this.BackColor = Color.Tan;
+            EstilizarTBCP(tbcPrincipal);
+            
         }
         // Metodos de Serviço
         private static DialogResult ObterResposta(string mensagem, string titulo)
@@ -25,7 +29,13 @@ namespace LeituraLivrosXML
             DialogResult resposta = MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo);
             return resposta;
         }
-
+        private void LimparCampos()
+        {
+            txbCapituloBiblia.Text = "";
+            txbVersiculoAlcorao.Text = "";
+            txbVersiculoBiblia.Text = "";
+        }
+        // Métodos de Carregamento
         private void CarregarDGV(DataGridView dgv)
         {
             dgv.DataSource = Manipuladores.ManipularXML.LerNotas();
@@ -49,17 +59,20 @@ namespace LeituraLivrosXML
             cbxLivrosBiblia.DataSource = Livros.LivrosBiblia();
             cbxSurata.DataSource = Livros.LivrosAlcorao();
         }
-        private void CarregarPICBOX(PictureBox picbox, string caminhoImagem)
+        private void CarregarPICBOX(PictureBox picbox, string caminhoImagem, PictureBoxSizeMode Dimensionamento)
         {
             picbox.ImageLocation = caminhoImagem;
-            picbox.SizeMode = PictureBoxSizeMode.Zoom;
+            picbox.SizeMode = Dimensionamento;
         }
-        private void LimparCampos()
+        // Métodos de Estilização
+        public static void EstilizarTBCP(TabControl tabControl)
         {
-            txbCapituloBiblia.Text = "";
-            txbVersiculoAlcorao.Text = "";
-            txbVersiculoBiblia.Text = "";
+            for (int i = 0; i < tabControl.TabCount; i++)
+            {
+                tabControl.TabPages[i].BackColor = Color.Tan;
+            }
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////////
         // Metodos do Tipo Botão
         private void btnProcuraBiblia_Click(object sender, EventArgs e)
         {
