@@ -11,107 +11,155 @@ namespace LeituraLivrosXML.Manipuladores
     {
         private static string caminhoXML = @"c:\users\natsu\onedrive\documentos\visual studio 2015\projects\leituralivrosxml\leituralivrosxml\anotaçõeslivros.xml";
 
-        public static List<Nota> LerNotas()
+        public static List<Nota> LerXml()
         {
             List<Nota> listaNotas = new List<Nota>();
-            XmlDocument arquivoXML = new XmlDocument();
-            arquivoXML.Load(caminhoXML);
-
-            XmlNodeList nosNotas = arquivoXML.SelectNodes("/biblioteca/anotacoes/anotacao");
-            foreach (XmlNode noNota in nosNotas)
+            Nota nota = new Nota();
+            XmlTextReader leitor = new XmlTextReader(caminhoXML); // abrir arquivo
+            bool leuID = false; // todos são utilizados para 
+            bool leuData = false; // validar quais dados foram lidos
+            bool leuLivro = false;
+            bool leuVersiculo = false;
+            bool leuComentario = false;
+            while (leitor.Read()) // abrir o arquivo e ler o arquivo
             {
-                Nota nota = new Nota();
-                nota.Id = noNota.Attributes["id"].Value;
-                nota.Data = noNota.Attributes["data"].Value;
-                nota.Livro = noNota.Attributes["livro"].Value;
-                nota.Versiculo = noNota.Attributes["versiculo"].Value;
-                nota.Comentario = noNota.Attributes["comentario"].Value;
-                listaNotas.Add(nota);
+                switch (leitor.NodeType) // encontrar o tipo de Nó que foi lido
+                {
+                    case XmlNodeType.Element: // Se for do tipo Elemento
+                        switch (leitor.Name) // Verificar qual o nome do Elemento
+                        {
+                            case "id":
+                                leuID = true;
+                                break;
+                            case "data":
+                                leuData = true;
+                                break;
+                            case "livro":
+                                leuLivro = true;
+                                break;
+                            case "versiculo":
+                                leuVersiculo = true;
+                                break;
+                            case "comentario":
+                                leuComentario = true;
+                                break;
+                        }
+                        break;
+                    case XmlNodeType.Text: // Após validação de qual elemento
+                        // encontramos qual o valor em Texto do elemento
+                        if (leuID)
+                        {
+                            nota.Id = leitor.Value;
+                            leuID = false;
+                        }
+                        if (leuData)
+                        {
+                            nota.Data = leitor.Value;
+                            leuData = false;
+                        }
+                        if (leuLivro)
+                        {
+                            nota.Livro = leitor.Value;
+                            leuLivro = false;
+                        }
+                        if (leuVersiculo)
+                        {
+                            nota.Versiculo = leitor.Value;
+                            leuVersiculo = false;
+                        }
+                        if (leuComentario)
+                        {
+                            nota.Comentario = leitor.Value;
+                            leuComentario = false;
+                        }
+                        break;
+                    case XmlNodeType.EndElement: // Como estou criando anotaçoes 
+                        if (leitor.Name == "anotacao") // quando chegar no fim
+                        {
+                            listaNotas.Add(nota); // adicionamos a nota lida
+                            nota = new Nota(); // zeramos os atributos de nota
+                        }
+                        break;
+                }
             }
+            leitor.Close(); // fechar o leitor
+            return listaNotas;
+        }
+        public static void EscreverXml(Nota notaParametro)
+        {
+            List<Nota> listaNotas = LerXml();
+            listaNotas.Add(notaParametro);
+            ModificarXml(listaNotas);
+        }
 
+
+
+        public static void EditarXml(Nota notaParametro)
+        {
+            List<Nota> listaNotas = LerXml();
+            foreach (Nota nota in listaNotas)
+            {
+                if (nota.Id == notaParametro.Id)
+                {
+                    nota.Comentario = notaParametro.Comentario;
+                }
+            }
+            ModificarXml(listaNotas);
+        }
+
+        public static void ExcluirNota(Nota notaParametro)
+        {
+            List<Nota> listaNotas = LerXml();
+            List<Nota> listaAlterada = new List<Nota>();
+            foreach (Nota nota in listaNotas)
+            {
+                if (nota.Id != notaParametro.Id)
+                {
+                    listaAlterada.Add(nota);
+                }
+            }
+            listaAlterada = ReenumerarNotas(listaAlterada);
+            ModificarXml(listaAlterada);
+        }
+
+        private static List<Nota> ReenumerarNotas(List<Nota> listaNotas)
+        {
+            for (int i = 0; i < listaNotas.Count; i++)
+            {
+                listaNotas[i].Id = i.ToString();
+            }
             return listaNotas;
         }
 
-        public static void AdicionarNota(Nota nota)
+        private static void ModificarXml(List<Nota> listaNotas)
         {
-            XmlDocument arquivoXML = new XmlDocument();
-            arquivoXML.Load(caminhoXML);
-            XmlAttribute atributoID = arquivoXML.CreateAttribute("id");
-            atributoID.Value = nota.Id.ToString();
-            XmlAttribute atributoData = arquivoXML.CreateAttribute("data");
-            atributoData.Value = nota.Data;
-            XmlAttribute atributoLivro = arquivoXML.CreateAttribute("livro");
-            atributoLivro.Value = nota.Livro;
-            XmlAttribute atributoVersiculo = arquivoXML.CreateAttribute("versiculo");
-            atributoVersiculo.Value = nota.Versiculo;
-            XmlAttribute atributoComentario = arquivoXML.CreateAttribute("comentario");
-            atributoComentario.Value = nota.Comentario;
-
-            XmlNode novaNota = arquivoXML.CreateElement("anotacao");
-            novaNota.Attributes.Append(atributoID);
-            novaNota.Attributes.Append(atributoData);
-            novaNota.Attributes.Append(atributoLivro);
-            novaNota.Attributes.Append(atributoVersiculo);
-            novaNota.Attributes.Append(atributoComentario);
-
-            XmlNode anotacoes = arquivoXML.SelectSingleNode("/biblioteca/anotacoes");
-            anotacoes.AppendChild(novaNota);
-            ReenumerarNotas();
-            arquivoXML.Save(caminhoXML);
-        }
-
-        public static void EditarNota(Nota nota)
-        {
-            XmlDocument arquivoXML = new XmlDocument();
-            arquivoXML.Load(caminhoXML);
-
-            XmlNodeList nosNotas = arquivoXML.SelectNodes("/biblioteca/anotacoes/anotacao");
-            foreach (XmlNode noNota in nosNotas)
+            XmlTextWriter writer = new XmlTextWriter(caminhoXML, null);
+            //inicia o documento xml
+            writer.WriteStartDocument();
+            //Usa a formatação
+            writer.Formatting = Formatting.Indented;
+            //Escreve o elemento raiz
+            writer.WriteStartElement("anotacoes");
+            foreach (Nota nota in listaNotas)
             {
-                if (noNota.Attributes["id"].Value == nota.Id.ToString())
-                {
-                    noNota.Attributes["data"].Value = nota.Data;
-                    noNota.Attributes["livro"].Value = nota.Livro;
-                    noNota.Attributes["versiculo"].Value = nota.Versiculo;
-                    noNota.Attributes["comentario"].Value = nota.Comentario;
-                    break;
-                }
+                //Inicia um elemento
+                writer.WriteStartElement("anotacao");
+                //e sub-elementos
+                writer.WriteElementString("id", nota.Id);
+                writer.WriteElementString("data", nota.Data);
+                writer.WriteElementString("livro", nota.Livro);
+                writer.WriteElementString("versiculo", nota.Versiculo);
+                writer.WriteElementString("comentario", nota.Comentario);
+                //encerra os elementos itens
+                writer.WriteEndElement();
+                // encerra o item
+                //escreve alguns espaços entre os nodes
+                writer.WriteWhitespace("");
             }
-            ReenumerarNotas();
-            arquivoXML.Save(caminhoXML);
-        }
-
-        public static void ExcluirNota(Nota nota)
-        {
-            XmlDocument arquivoXML = new XmlDocument();
-            arquivoXML.Load(caminhoXML);
-
-            XmlNodeList nosNotas = arquivoXML.SelectNodes("/biblioteca/anotacoes/anotacao");
-            foreach (XmlNode noNota in nosNotas)
-            {
-                if (noNota.Attributes["id"].Value == nota.Id.ToString())
-                {
-                    noNota.ParentNode.RemoveChild(noNota);
-                    break;
-                }
-            }
-            arquivoXML.Save(caminhoXML);
-            ReenumerarNotas();
-        }
-
-        private static void ReenumerarNotas()
-        {
-            XmlDocument arquivoXML = new XmlDocument();
-            arquivoXML.Load(caminhoXML);
-
-            XmlNodeList nosNotas = arquivoXML.SelectNodes("/biblioteca/anotacoes/anotacao");
-            int i = 0;
-            foreach (XmlNode noNota in nosNotas)
-            {
-                noNota.Attributes["id"].Value = i.ToString();
-                i++;
-            }
-            arquivoXML.Save(caminhoXML);
+            // encerra o elemento raiz
+            writer.WriteFullEndElement();
+            //escreve o XML para o arquivo e fecha o escritor
+            writer.Close();
         }
     }
 }

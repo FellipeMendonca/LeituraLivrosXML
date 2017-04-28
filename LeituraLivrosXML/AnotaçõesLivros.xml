@@ -1,7 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<biblioteca>
-  <anotacoes>
-    <anotacao id="1" data="26/04/2017" livro="Alcorao" versiculo=" Alc.1.1- Em nome de Deus, o Clemente, o Misericordioso." comentario="Comentario Alcorao" />
-    <anotacao id="1" data="26/04/2017" livro="Biblia" versiculo="GÊNESIS - GÊNESIS [3] - 3 mas do fruto da árvore que está no meio do jardim, disse Deus: Não comereis dele, nem nele tocareis, para que não morrais." comentario="Comentario Biblia&#xD;&#xA;" />
-  </anotacoes>
-</biblioteca>
+﻿<?xml version="1.0"?>
+<anotacoes>
+  <anotacao>
+    <id>0</id>
+    <data>28/04/2017</data>
+    <livro>Biblia</livro>
+    <versiculo>GÊNESIS - GÊNESIS [1] - 1 No princípio criou Deus os céus e a terra.</versiculo>
+    <comentario>Cometario Biblia</comentario>
+  </anotacao>
+  <anotacao>
+    <id>1</id>
+    <data>28/04/2017</data>
+    <livro>Alcorao</livro>
+    <versiculo>Alc.1.1- Em nome de Deus, o Clemente, o Misericordioso.</versiculo>
+    <comentario>Comentario Alcorao</comentario>
+  </anotacao>
+</anotacoes>

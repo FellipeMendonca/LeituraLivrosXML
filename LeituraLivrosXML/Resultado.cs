@@ -42,11 +42,11 @@ namespace LeituraLivrosXML
             nota.Data = notaParametro.Data;
             if (NotaEditada)
             {
-                Manipuladores.ManipularXML.EditarNota(nota);
+                Manipuladores.ManipularXML.EditarXml(nota);
             }
             else
             {
-                Manipuladores.ManipularXML.AdicionarNota(nota);
+                Manipuladores.ManipularXML.EscreverXml(nota);
             }
             Close();
         }

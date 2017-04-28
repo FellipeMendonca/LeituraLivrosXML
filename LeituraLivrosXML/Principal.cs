@@ -38,7 +38,7 @@ namespace LeituraLivrosXML
         // Métodos de Carregamento
         private void CarregarDGV(DataGridView dgv)
         {
-            dgv.DataSource = Manipuladores.ManipularXML.LerNotas();
+            dgv.DataSource = Manipuladores.ManipularXML.LerXml();
             dgv.Columns["id"].Visible = false;
             dgvNotas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // Configurações DGV
