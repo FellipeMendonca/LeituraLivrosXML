@@ -13,5 +13,18 @@ namespace LeituraLivrosXML
         public string Livro { get; set; }
         public string Versiculo { get; set; }
         public string Comentario { get; set; }
+
+        public Nota()
+        {
+
+        }
+        public Nota(string id, string data, string livro, string versiculo, string comentario)
+        {
+            this.Id = id;
+            this.Data = data;
+            this.Livro = livro;
+            this.Versiculo = versiculo;
+            this.Comentario = comentario;
+        }
     }
 }

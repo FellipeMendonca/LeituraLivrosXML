@@ -102,6 +102,7 @@ namespace LeituraLivrosXML.Manipuladores
                 if (nota.Id == notaParametro.Id)
                 {
                     nota.Comentario = notaParametro.Comentario;
+                    break;
                 }
             }
             ModificarXml(listaNotas);
@@ -110,16 +111,9 @@ namespace LeituraLivrosXML.Manipuladores
         public static void ExcluirNota(Nota notaParametro)
         {
             List<Nota> listaNotas = LerXml();
-            List<Nota> listaAlterada = new List<Nota>();
-            foreach (Nota nota in listaNotas)
-            {
-                if (nota.Id != notaParametro.Id)
-                {
-                    listaAlterada.Add(nota);
-                }
-            }
-            listaAlterada = ReenumerarNotas(listaAlterada);
-            ModificarXml(listaAlterada);
+            listaNotas.RemoveAll(nota => nota.Id == notaParametro.Id);
+            listaNotas = ReenumerarNotas(listaNotas);
+            ModificarXml(listaNotas);
         }
 
         private static List<Nota> ReenumerarNotas(List<Nota> listaNotas)

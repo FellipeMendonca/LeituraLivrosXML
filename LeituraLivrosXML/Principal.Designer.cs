@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbcPrincipal = new System.Windows.Forms.TabControl();
             this.tbpBiblia = new System.Windows.Forms.TabPage();
             this.picbBiblia = new System.Windows.Forms.PictureBox();
@@ -110,10 +110,12 @@
             // 
             this.cbxLivrosBiblia.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxLivrosBiblia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxLivrosBiblia.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbxLivrosBiblia.FormattingEnabled = true;
             this.cbxLivrosBiblia.Location = new System.Drawing.Point(169, 150);
             this.cbxLivrosBiblia.Name = "cbxLivrosBiblia";
             this.cbxLivrosBiblia.Size = new System.Drawing.Size(115, 21);
+            this.cbxLivrosBiblia.Sorted = true;
             this.cbxLivrosBiblia.TabIndex = 6;
             // 
             // txbVersiculoBiblia
@@ -218,6 +220,7 @@
             // 
             this.cbxSurata.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxSurata.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxSurata.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbxSurata.FormattingEnabled = true;
             this.cbxSurata.Location = new System.Drawing.Point(172, 156);
             this.cbxSurata.Name = "cbxSurata";
@@ -277,14 +280,14 @@
             this.dgvNotas.AllowUserToResizeRows = false;
             this.dgvNotas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvNotas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvNotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNotas.Location = new System.Drawing.Point(6, 6);
             this.dgvNotas.Name = "dgvNotas";

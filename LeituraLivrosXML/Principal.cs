@@ -21,7 +21,7 @@ namespace LeituraLivrosXML
             CarregarPICBOX(picbBiblia, AppDomain.CurrentDomain.BaseDirectory + @"/Imagens/ImagemBiblia.png", PictureBoxSizeMode.StretchImage);
             this.BackColor = Color.Tan;
             EstilizarTBCP(tbcPrincipal);
-            
+
         }
         // Metodos de Serviço
         private static DialogResult ObterResposta(string mensagem, string titulo)
@@ -35,6 +35,11 @@ namespace LeituraLivrosXML
             txbVersiculoAlcorao.Text = "";
             txbVersiculoBiblia.Text = "";
         }
+
+        private static bool ApenasNumero(string palavra)
+        {
+            return palavra.All(char.IsDigit);
+        }
         // Métodos de Carregamento
         private void CarregarDGV(DataGridView dgv)
         {
@@ -47,7 +52,7 @@ namespace LeituraLivrosXML
                 dgv.Columns[i].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dgv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                if (i == 3)
+                if (dgv.Columns[i].Name == "Versiculo")
                 {
                     dgv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 }
@@ -76,20 +81,62 @@ namespace LeituraLivrosXML
         // Metodos do Tipo Botão
         private void btnProcuraBiblia_Click(object sender, EventArgs e)
         {
-            string livro = cbxLivrosBiblia.SelectedItem.ToString();
-            string capitulo = txbCapituloBiblia.Text;
-            string versiculo = txbVersiculoBiblia.Text;
-            if (livro != "" && capitulo != "" && versiculo != "")
+            if (ApenasNumero(txbCapituloBiblia.Text) && ApenasNumero(txbVersiculoBiblia.Text))
             {
+                string livro = cbxLivrosBiblia.SelectedItem.ToString();
+                string capitulo = txbCapituloBiblia.Text;
+                string versiculo = txbVersiculoBiblia.Text;
+                if (livro != "" && capitulo != "" && versiculo != "")
+                {
 
-                string versiculoEncontrado = Manipuladores.LerArquivo.LerBiblia(livro, capitulo, versiculo);
+                    string versiculoEncontrado = Manipuladores.LerArquivo.LerBiblia(livro, capitulo, versiculo);
+                    if (versiculoEncontrado != "")
+                    {
+                        if (DialogResult.Yes == ObterResposta("Deseja comentar?", "Versiculo Encontrado"))
+                        {
+                            Nota nota = new Nota();
+                            nota.Id = dgvNotas.Rows.Count.ToString();
+                            nota.Livro = "Biblia";
+                            nota.Comentario = "";
+                            nota.Versiculo = versiculoEncontrado;
+                            nota.Data = DateTime.Now.ToShortDateString();
+                            Resultado telaResultado = new Resultado(nota, false);
+                            telaResultado.ShowDialog();
+                            CarregarDGV(dgvNotas);
+                        }
+                        else
+                        {
+                            MessageBox.Show(versiculoEncontrado, "Versiculo");
+                        }
+                        LimparCampos();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Preencha todos os campos!!", "Erro");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Preencha com Numeros!!!", "Erro");
+            }
+        }
+
+        private void btnProcuraAlcorao_Click(object sender, EventArgs e)
+        {
+            if (ApenasNumero(txbVersiculoAlcorao.Text))
+            {
+                int idSurata = cbxSurata.SelectedIndex + 1;
+                string versiculo = txbVersiculoAlcorao.Text;
+
+                string versiculoEncontrado = Manipuladores.LerArquivo.LerAlcorao(idSurata.ToString(), versiculo);
                 if (versiculoEncontrado != "")
                 {
                     if (DialogResult.Yes == ObterResposta("Deseja comentar?", "Versiculo Encontrado"))
                     {
                         Nota nota = new Nota();
                         nota.Id = dgvNotas.Rows.Count.ToString();
-                        nota.Livro = "Biblia";
+                        nota.Livro = "Alcorao";
                         nota.Comentario = "";
                         nota.Versiculo = versiculoEncontrado;
                         nota.Data = DateTime.Now.ToShortDateString();
@@ -103,42 +150,14 @@ namespace LeituraLivrosXML
                     }
                     LimparCampos();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Preencha todos os campos!!", "Erro");
-            }
-        }
-
-        private void btnProcuraAlcorao_Click(object sender, EventArgs e)
-        {
-            int idSurata = cbxSurata.SelectedIndex + 1;
-            string versiculo = txbVersiculoAlcorao.Text;
-
-            string versiculoEncontrado = Manipuladores.LerArquivo.LerAlcorao(idSurata.ToString(), versiculo);
-            if (versiculoEncontrado != "")
-            {
-                if (DialogResult.Yes == ObterResposta("Deseja comentar?", "Versiculo Encontrado"))
-                {
-                    Nota nota = new Nota();
-                    nota.Id = dgvNotas.Rows.Count.ToString();
-                    nota.Livro = "Alcorao";
-                    nota.Comentario = "";
-                    nota.Versiculo = versiculoEncontrado;
-                    nota.Data = DateTime.Now.ToShortDateString();
-                    Resultado telaResultado = new Resultado(nota, false);
-                    telaResultado.ShowDialog();
-                    CarregarDGV(dgvNotas);
-                }
                 else
                 {
-                    MessageBox.Show(versiculoEncontrado, "Versiculo");
+                    MessageBox.Show("Preencha todos os campos!!", "Erro");
                 }
-                LimparCampos();
             }
             else
             {
-                MessageBox.Show("Preencha todos os campos!!", "Erro");
+                MessageBox.Show("Preencha com Numeros!!!", "Erro");
             }
         }
 
@@ -171,5 +190,6 @@ namespace LeituraLivrosXML
             telaResultado.ShowDialog();
             CarregarDGV(dgvNotas);
         }
+        
     }
 }
