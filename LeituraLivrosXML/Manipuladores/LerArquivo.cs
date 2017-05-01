@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LeituraLivrosXML.Manipuladores
 {
@@ -12,6 +13,15 @@ namespace LeituraLivrosXML.Manipuladores
         private static string caminhoBiblia = AppDomain.CurrentDomain.BaseDirectory + @"/Livros/Biblia.txt";
         private static string caminhoAlcorao = AppDomain.CurrentDomain.BaseDirectory + @"/Livros/Alcorao.txt";
 
+        public static bool AcharLivro()
+        {
+            if (File.Exists(caminhoBiblia) == false || File.Exists(caminhoAlcorao) == false)
+            {
+                MessageBox.Show("Impossível achar a Biblia ou o Alcorao!", "Erro ao encontrar livros");
+                return false;
+            }
+            return true;
+        }
         public static string LerBiblia(string livro, string capitulo, string versiculo)
         {
             string livroUpper = livro.ToUpper(); // No txt o padrao é uppercase no nome dos livros
