@@ -132,6 +132,7 @@ namespace LeituraLivrosXML.Manipuladores
                 if (nota.Id == notaParametro.Id)
                 {
                     nota.Comentario = notaParametro.Comentario;
+                    nota.Data = notaParametro.Data;
                     break;
                 }
             }

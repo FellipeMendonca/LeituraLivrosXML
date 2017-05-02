@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,25 +17,48 @@ namespace LeituraLivrosXML
         // Metodos do Formulario
         public frmPrincipal() // Construtor
         {
-            InitializeComponent();
-            CarregarCBX();
+            try
+            {
+                InitializeComponent();
+                CarregarCBX();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
         private void frmPrincipal_Shown(object sender, EventArgs e) // Exibe o Form e depois faz verificação
         {
-            CarregarDGV(dgvNotas);
+            try
+            {
+                CarregarDGV(dgvNotas);
+            }
+            catch (Exception fe)
+            {
+                MessageBox.Show(fe.Message);
+            }
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e) // Carrega antes de Exibir o form
         {
-            if (Manipuladores.LerArquivo.AcharLivro())
+            try
             {
-                CarregarPICBOX(picbAlcorao, AppDomain.CurrentDomain.BaseDirectory + @"/Imagens/ImagemAlcorao.png", PictureBoxSizeMode.StretchImage);
-                CarregarPICBOX(picbBiblia, AppDomain.CurrentDomain.BaseDirectory + @"/Imagens/ImagemBiblia.png", PictureBoxSizeMode.StretchImage);
-                this.BackColor = Color.Tan;
-                EstilizarTBCP(tbcPrincipal);
-            }else
+                if (Manipuladores.LerArquivo.AcharLivro())
+                {
+                    CarregarPICBOX(picbAlcorao, AppDomain.CurrentDomain.BaseDirectory + @"/Imagens/ImagemAlcorao.png", PictureBoxSizeMode.StretchImage);
+                    CarregarPICBOX(picbBiblia, AppDomain.CurrentDomain.BaseDirectory + @"/Imagens/ImagemBiblia.png", PictureBoxSizeMode.StretchImage);
+                    this.BackColor = Color.Tan;
+                    EstilizarTBCP(tbcPrincipal);
+                }
+                else
+                {
+                    MessageBox.Show("Não foi possivel achar arquivos de dados. Encerrando Programa!", "Erro de arquivo");
+                    Close();
+                }
+            }
+            catch (Exception de)
             {
-                Close();
+                MessageBox.Show(de.Message);
             }
         }
         // Metodos de Serviço
@@ -66,8 +90,8 @@ namespace LeituraLivrosXML
             else
             {
                 dgv.DataSource = Manipuladores.ManipularXML.LerXml();
-                dgv.Columns["id"].Visible = false;
-                dgvNotas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                dgv.Columns["Id"].Visible = false;
+                dgv.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 // Configurações DGV
                 for (int i = 0; i < dgv.Columns.Count; i++)
                 {
@@ -126,7 +150,7 @@ namespace LeituraLivrosXML
                             nota.Comentario = "";
                             nota.Versiculo = versiculoEncontrado;
                             nota.Data = DateTime.Now.ToShortDateString();
-                            Resultado telaResultado = new Resultado(nota, false);
+                            Resultado telaResultado = new Resultado(nota);
                             telaResultado.ShowDialog();
                             CarregarDGV(dgvNotas);
                         }
@@ -175,7 +199,7 @@ namespace LeituraLivrosXML
                             nota.Comentario = "";
                             nota.Versiculo = versiculoEncontrado;
                             nota.Data = DateTime.Now.ToShortDateString();
-                            Resultado telaResultado = new Resultado(nota, false);
+                            Resultado telaResultado = new Resultado(nota);
                             telaResultado.ShowDialog();
                             CarregarDGV(dgvNotas);
                         }

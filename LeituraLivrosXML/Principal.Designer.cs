@@ -276,6 +276,7 @@
             // 
             this.dgvNotas.AllowUserToAddRows = false;
             this.dgvNotas.AllowUserToDeleteRows = false;
+            this.dgvNotas.AllowUserToOrderColumns = true;
             this.dgvNotas.AllowUserToResizeColumns = false;
             this.dgvNotas.AllowUserToResizeRows = false;
             this.dgvNotas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
@@ -293,6 +294,7 @@
             this.dgvNotas.Name = "dgvNotas";
             this.dgvNotas.ReadOnly = true;
             this.dgvNotas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvNotas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvNotas.Size = new System.Drawing.Size(292, 253);
             this.dgvNotas.TabIndex = 0;
             // 

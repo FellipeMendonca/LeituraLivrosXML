@@ -12,7 +12,7 @@ namespace LeituraLivrosXML
 {
     public partial class Resultado : Form
     {
-        private static bool NotaEditada = false;
+        private static bool NotaEditada;
         private Nota notaParametro;
 
         public Resultado()
@@ -20,15 +20,15 @@ namespace LeituraLivrosXML
             InitializeComponent();
         }
 
-        public Resultado(Nota nota, bool isEdicao)
+        public Resultado(Nota nota, bool isEdicao = false)
         {
             InitializeComponent();            
-            txbVersiculo.Text = nota.Versiculo;
-            txbComentario.Text = nota.Comentario;
             notaParametro = new Nota();
             notaParametro.Livro = nota.Livro;
             notaParametro.Id = nota.Id;
             notaParametro.Data = nota.Data;
+            txbVersiculo.Text = nota.Versiculo;
+            txbComentario.Text = nota.Comentario;
             NotaEditada = isEdicao;
         }
 
