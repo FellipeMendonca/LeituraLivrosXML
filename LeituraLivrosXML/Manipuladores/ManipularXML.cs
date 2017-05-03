@@ -38,82 +38,78 @@ namespace LeituraLivrosXML.Manipuladores
         public static List<Nota> LerXml()
         {
             string caminhoXML = CaminhoXml();
-            if (File.Exists(caminhoXML))
-            {
-                XmlTextReader leitor = new XmlTextReader(caminhoXML);
-                List<Nota> listaNotas = new List<Nota>();
-                Nota nota = new Nota(); // abrir arquivo
-                bool leuID = false; // todos são utilizados para 
-                bool leuData = false; // validar quais dados foram lidos
-                bool leuLivro = false;
-                bool leuVersiculo = false;
-                bool leuComentario = false;
+            XmlTextReader leitor = new XmlTextReader(caminhoXML);
+            List<Nota> listaNotas = new List<Nota>();
+            Nota nota = new Nota(); // abrir arquivo
+            bool leuID = false; // todos são utilizados para 
+            bool leuData = false; // validar quais dados foram lidos
+            bool leuLivro = false;
+            bool leuVersiculo = false;
+            bool leuComentario = false;
 
-                while (leitor.Read()) // abrir o arquivo e ler o arquivo
+            while (leitor.Read()) // abrir o arquivo e ler o arquivo
+            {
+                switch (leitor.NodeType) // encontrar o tipo de Nó que foi lido
                 {
-                    switch (leitor.NodeType) // encontrar o tipo de Nó que foi lido
-                    {
-                        case XmlNodeType.Element: // Se for do tipo Elemento
-                            switch (leitor.Name) // Verificar qual o nome do Elemento
-                            {
-                                case "id":
-                                    leuID = true;
-                                    break;
-                                case "data":
-                                    leuData = true;
-                                    break;
-                                case "livro":
-                                    leuLivro = true;
-                                    break;
-                                case "versiculo":
-                                    leuVersiculo = true;
-                                    break;
-                                case "comentario":
-                                    leuComentario = true;
-                                    break;
-                            }
-                            break;
-                        case XmlNodeType.Text: // Após validação de qual elemento
-                                               // encontramos qual o valor em Texto do elemento
-                            if (leuID)
-                            {
-                                nota.Id = leitor.Value;
-                                leuID = false;
-                            }
-                            if (leuData)
-                            {
-                                nota.Data = leitor.Value;
-                                leuData = false;
-                            }
-                            if (leuLivro)
-                            {
-                                nota.Livro = leitor.Value;
-                                leuLivro = false;
-                            }
-                            if (leuVersiculo)
-                            {
-                                nota.Versiculo = leitor.Value;
-                                leuVersiculo = false;
-                            }
-                            if (leuComentario)
-                            {
-                                nota.Comentario = leitor.Value;
-                                leuComentario = false;
-                            }
-                            break;
-                        case XmlNodeType.EndElement: // Como estou criando anotaçoes 
-                            if (leitor.Name == "anotacao") // quando chegar no fim
-                            {
-                                listaNotas.Add(nota); // adicionamos a nota lida
-                                nota = new Nota(); // zeramos os atributos de nota
-                            }
-                            break;
-                    }
+                    case XmlNodeType.Element: // Se for do tipo Elemento
+                        switch (leitor.Name) // Verificar qual o nome do Elemento
+                        {
+                            case "id":
+                                leuID = true;
+                                break;
+                            case "data":
+                                leuData = true;
+                                break;
+                            case "livro":
+                                leuLivro = true;
+                                break;
+                            case "versiculo":
+                                leuVersiculo = true;
+                                break;
+                            case "comentario":
+                                leuComentario = true;
+                                break;
+                        }
+                        break;
+                    case XmlNodeType.Text: // Após validação de qual elemento
+                                           // encontramos qual o valor em Texto do elemento
+                        if (leuID)
+                        {
+                            nota.Id = leitor.Value;
+                            leuID = false;
+                        }
+                        if (leuData)
+                        {
+                            nota.Data = leitor.Value;
+                            leuData = false;
+                        }
+                        if (leuLivro)
+                        {
+                            nota.Livro = leitor.Value;
+                            leuLivro = false;
+                        }
+                        if (leuVersiculo)
+                        {
+                            nota.Versiculo = leitor.Value;
+                            leuVersiculo = false;
+                        }
+                        if (leuComentario)
+                        {
+                            nota.Comentario = leitor.Value;
+                            leuComentario = false;
+                        }
+                        break;
+                    case XmlNodeType.EndElement: // Como estou criando anotaçoes 
+                        if (leitor.Name == "anotacao") // quando chegar no fim
+                        {
+                            listaNotas.Add(nota); // adicionamos a nota lida
+                            nota = new Nota(); // zeramos os atributos de nota
+                        }
+                        break;
                 }
-                leitor.Close(); // fechar o leitor
-                return listaNotas;
             }
-            return null;
+            leitor.Close(); // fechar o leitor
+            return listaNotas;
         }
         public static void EscreverXml(Nota notaParametro)
         {

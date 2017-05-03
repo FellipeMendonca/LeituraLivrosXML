@@ -32,40 +32,37 @@ namespace LeituraLivrosXML.Manipuladores
             bool acheiversiculo = false;
             // Retorno
             string versiculoEncontrado = "";
-            if (File.Exists(caminhoBiblia))
+            using (StreamReader leitor = File.OpenText(caminhoBiblia))
             {
-                using (StreamReader leitor = File.OpenText(caminhoBiblia))
+                while (leitor.Peek() >= 0)
                 {
-                    while (leitor.Peek() >= 0)
+                    string frase = leitor.ReadLine();
+                    if (frase != "")
                     {
-                        string frase = leitor.ReadLine();
-                        if (frase != "")
+                        if (frase.ToUpper() == livroUpper)
                         {
-                            if (frase.ToUpper() == livroUpper)
-                            {
-                                versiculoEncontrado += frase + " - ";
-                                acheiLivro = true;
-                            }
-                            else if (frase.ToUpper() == capituloBusca && acheiLivro)
-                            {
-                                versiculoEncontrado += frase + " - ";
-                                acheiCapitulo = true;
-                            }
-                            else if (frase.Contains(versiculo) && acheiLivro && acheiCapitulo)
-                            {
-                                versiculoEncontrado += frase;
-                                acheiversiculo = true;
-                            }
-                            if (acheiLivro && acheiCapitulo && acheiversiculo)
-                            {
-                                return versiculoEncontrado;
-                            }
+                            versiculoEncontrado += frase + " - ";
+                            acheiLivro = true;
+                        }
+                        else if (frase.ToUpper() == capituloBusca && acheiLivro)
+                        {
+                            versiculoEncontrado += frase + " - ";
+                            acheiCapitulo = true;
+                        }
+                        else if (frase.Contains(versiculo) && acheiLivro && acheiCapitulo)
+                        {
+                            versiculoEncontrado += frase;
+                            acheiversiculo = true;
+                        }
+                        if (acheiLivro && acheiCapitulo && acheiversiculo)
+                        {
+                            return versiculoEncontrado;
                         }
                     }
-                    if (acheiLivro == false || acheiCapitulo == false || acheiversiculo == false)
-                    {
-                        versiculoEncontrado = "";
-                    }
+                }
+                if (acheiLivro == false || acheiCapitulo == false || acheiversiculo == false)
+                {
+                    versiculoEncontrado = "";
                 }
             }
             return versiculoEncontrado;

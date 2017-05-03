@@ -1,4 +1,4 @@
-﻿namespace LeituraLivrosXML
+﻿namespace LeituraLivrosXML.TelaPrincipal
 {
     partial class frmPrincipal
     {

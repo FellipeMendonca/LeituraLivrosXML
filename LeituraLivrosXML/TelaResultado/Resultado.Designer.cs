@@ -1,4 +1,4 @@
-﻿namespace LeituraLivrosXML
+﻿namespace LeituraLivrosXML.TelaResultado
 {
     partial class Resultado
     {
