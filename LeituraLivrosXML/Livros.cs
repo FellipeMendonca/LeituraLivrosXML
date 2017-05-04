@@ -14,7 +14,7 @@ namespace LeituraLivrosXML
             "II Samuel", "I Reis" ,"II Reis","I Crônicas", "II Crônicas","Esdras", "Neemias", "Ester", "Jó", "Salmos",
             "Provérbios", "Eclesiastes", "Cântico dos Cânticos","Isaías", "Jeremias", "Lamentações", "Ezequiel", "Daniel", "Oseias", "Joel",
             "Amós", "Obadias", "Jonas", "Miqueias", "Naum", "Habacuque", "Sofonias", "Ageu", "Zacarias" , "Malaquias" , "Mateus", "Marcos",
-            "Lucas" , "João", "Romanos", "I Coríntios", "II Coríntios ", "Gálatas", "Efésios", "Filipenses", "Colossenses","I Tessalonicenses",
+            "Lucas" , "João","Atos" ,"Romanos", "I Coríntios", "II Coríntios ", "Gálatas", "Efésios", "Filipenses", "Colossenses","I Tessalonicenses",
             "II Tessalonicenses", "I Timóteo", "II Timóteo", "Tito", "Filêmon" ,"Hebreus", "Tiago", "I Pedro","II Pedro", "I João", "II João",
             "III João", "Judas" ,"Apocalipse"};
             return livrosBiblia;
@@ -36,7 +36,7 @@ namespace LeituraLivrosXML
             , "O elefante", "Os coraixitas", "Pequenos favores", "A abundância", "Os incrédulos", "O socorro", "O esparto", "A unicidade", "A alvorada", "Os humanos"};
             return livrosAlcorao;
         }
-        
+
 
     }
 }
