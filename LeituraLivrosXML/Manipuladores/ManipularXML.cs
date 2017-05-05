@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace LeituraLivrosXML.Manipuladores
 {
@@ -16,24 +17,25 @@ namespace LeituraLivrosXML.Manipuladores
             string caminhoExecutavel = Directory.GetCurrentDirectory();
             string pastaBin = caminhoExecutavel.Remove(caminhoExecutavel.LastIndexOf("\\"));
             string pastaArquivosProjeto = pastaBin.Remove(pastaBin.LastIndexOf("\\"));
-            pastaArquivosProjeto += @"\AnotaçõesLivros.xml";
-            return pastaArquivosProjeto;
+            string caminhoXml = pastaArquivosProjeto + @"\AnotaçõesLivros.xml";
+            return caminhoXml;
         }
 
         public static bool AcharXML()
         {
             return File.Exists(CaminhoXml());
         }
-        /*private static string Iteracao()
+        /*private static string CaminhoXml()
         {
             string caminhoExecutavel = Directory.GetCurrentDirectory();
-            string pastaArquivosProjeto = "";
+            string caminhoXml = "";
             string[] pedacosCaminho = caminhoExecutavel.Split('\\');
             for (int i = 0; i < (pedacosCaminho.Count() - 2); i++)
             {
-                pastaArquivosProjeto += pedacosCaminho[i] + "\\";
+                caminhoXml += pedacosCaminho[i] + "\\";
             }
-            return pastaArquivosProjeto;
+            caminhoXml += @"\AnotaçõesLivros.xml";
+            return caminhoXml;
         }*/
         public static List<Nota> LerXml()
         {
@@ -151,8 +153,27 @@ namespace LeituraLivrosXML.Manipuladores
             }
             return listaNotas;
         }
-
         private static void ModificarXml(List<Nota> listaNotas)
+        {
+            string caminhoXML = CaminhoXml();
+            XmlTextWriter writer = new XmlTextWriter(caminhoXML, null);
+            writer.Formatting = Formatting.Indented;
+            writer.WriteStartDocument();
+            var notas = new XElement("anotacoes",
+             from nota in listaNotas
+             select new XElement("anotacao",
+                        new XElement("id", nota.Id.Trim()),
+                        new XElement("data", nota.Data.Trim()),
+                        new XElement("livro", nota.Livro.Trim()),
+                        new XElement("versiculo", nota.Versiculo.Trim()),
+                        new XElement("comentario", nota.Comentario.Trim())
+                     )// end "anotacao"
+                 ); // end "Root"
+            notas.WriteTo(writer);
+            writer.Close();
+        }
+
+        /*private static void ModificarXml(List<Nota> listaNotas)
         {
             string caminhoXML = CaminhoXml();
             XmlTextWriter writer = new XmlTextWriter(caminhoXML, null);
@@ -182,6 +203,6 @@ namespace LeituraLivrosXML.Manipuladores
             writer.WriteFullEndElement();
             //escreve o XML para o arquivo e fecha o escritor
             writer.Close();
-        }
+        }*/
     }
 }

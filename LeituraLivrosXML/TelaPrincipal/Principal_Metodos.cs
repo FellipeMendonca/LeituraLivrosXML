@@ -27,13 +27,13 @@ namespace LeituraLivrosXML.TelaPrincipal
         private Nota IniciarNota(string tipo)
         {
             Nota nota = new Nota();
-            nota.Id = dgvNotas.CurrentRow.Cells[0].Value.ToString();
-            nota.Livro = dgvNotas.CurrentRow.Cells[2].Value.ToString();
-            nota.Versiculo = dgvNotas.CurrentRow.Cells[3].Value.ToString();
-            nota.Comentario = dgvNotas.CurrentRow.Cells[4].Value.ToString();
+            nota.Id = dgvNotas.CurrentRow.Cells["Id"].Value.ToString();
+            nota.Livro = dgvNotas.CurrentRow.Cells["Livro"].Value.ToString();
+            nota.Versiculo = dgvNotas.CurrentRow.Cells["Versiculo"].Value.ToString();
+            nota.Comentario = dgvNotas.CurrentRow.Cells["Comentario"].Value.ToString();
             if (tipo == "Excluir")
             {
-                nota.Data = dgvNotas.CurrentRow.Cells[1].Value.ToString();
+                nota.Data = dgvNotas.CurrentRow.Cells["Data"].Value.ToString();
             }
             if (tipo == "Editar")
             {
@@ -65,20 +65,19 @@ namespace LeituraLivrosXML.TelaPrincipal
         {
             try
             {
-                dgv.DataSource = Manipuladores.ManipularXML.LerXml();
+                dgv.DataSource = Manipuladores.ManipularXML.LerXml().OrderBy(nota => nota.Livro).ToList();
                 dgv.Columns["Id"].Visible = false;
                 dgv.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 // Configurações DGV
                 for (int i = 0; i < dgv.Columns.Count; i++)
                 {
                     dgv.Columns[i].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    dgv.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                     dgv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dgv.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                     if (dgv.Columns[i].Name == "Versiculo")
                     {
                         dgv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                     }
-
                 }
             }
             catch (Exception fe)

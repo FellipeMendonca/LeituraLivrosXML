@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbcPrincipal = new System.Windows.Forms.TabControl();
             this.tbpBiblia = new System.Windows.Forms.TabPage();
             this.picbBiblia = new System.Windows.Forms.PictureBox();
@@ -101,7 +102,7 @@
             this.btnProcuraBiblia.Location = new System.Drawing.Point(115, 260);
             this.btnProcuraBiblia.Name = "btnProcuraBiblia";
             this.btnProcuraBiblia.Size = new System.Drawing.Size(75, 23);
-            this.btnProcuraBiblia.TabIndex = 7;
+            this.btnProcuraBiblia.TabIndex = 3;
             this.btnProcuraBiblia.Text = "Procurar";
             this.btnProcuraBiblia.UseVisualStyleBackColor = true;
             this.btnProcuraBiblia.Click += new System.EventHandler(this.btnProcuraBiblia_Click);
@@ -116,14 +117,14 @@
             this.cbxLivrosBiblia.Name = "cbxLivrosBiblia";
             this.cbxLivrosBiblia.Size = new System.Drawing.Size(115, 21);
             this.cbxLivrosBiblia.Sorted = true;
-            this.cbxLivrosBiblia.TabIndex = 6;
+            this.cbxLivrosBiblia.TabIndex = 0;
             // 
             // txbVersiculoBiblia
             // 
             this.txbVersiculoBiblia.Location = new System.Drawing.Point(184, 222);
             this.txbVersiculoBiblia.Name = "txbVersiculoBiblia";
             this.txbVersiculoBiblia.Size = new System.Drawing.Size(100, 20);
-            this.txbVersiculoBiblia.TabIndex = 5;
+            this.txbVersiculoBiblia.TabIndex = 2;
             this.txbVersiculoBiblia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblVersiculo
@@ -141,7 +142,7 @@
             this.txbCapituloBiblia.Location = new System.Drawing.Point(180, 186);
             this.txbCapituloBiblia.Name = "txbCapituloBiblia";
             this.txbCapituloBiblia.Size = new System.Drawing.Size(104, 20);
-            this.txbCapituloBiblia.TabIndex = 3;
+            this.txbCapituloBiblia.TabIndex = 1;
             this.txbCapituloBiblia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
@@ -193,7 +194,7 @@
             this.btnProcuraAlcorao.Location = new System.Drawing.Point(115, 260);
             this.btnProcuraAlcorao.Name = "btnProcuraAlcorao";
             this.btnProcuraAlcorao.Size = new System.Drawing.Size(75, 23);
-            this.btnProcuraAlcorao.TabIndex = 4;
+            this.btnProcuraAlcorao.TabIndex = 2;
             this.btnProcuraAlcorao.Text = "Procurar";
             this.btnProcuraAlcorao.UseVisualStyleBackColor = true;
             this.btnProcuraAlcorao.Click += new System.EventHandler(this.btnProcuraAlcorao_Click);
@@ -203,7 +204,7 @@
             this.txbVersiculoAlcorao.Location = new System.Drawing.Point(172, 207);
             this.txbVersiculoAlcorao.Name = "txbVersiculoAlcorao";
             this.txbVersiculoAlcorao.Size = new System.Drawing.Size(110, 20);
-            this.txbVersiculoAlcorao.TabIndex = 3;
+            this.txbVersiculoAlcorao.TabIndex = 1;
             this.txbVersiculoAlcorao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblVersoAlcorao
@@ -225,7 +226,7 @@
             this.cbxSurata.Location = new System.Drawing.Point(172, 156);
             this.cbxSurata.Name = "cbxSurata";
             this.cbxSurata.Size = new System.Drawing.Size(110, 21);
-            this.cbxSurata.TabIndex = 1;
+            this.cbxSurata.TabIndex = 0;
             // 
             // lblSurata
             // 
@@ -281,6 +282,7 @@
             this.dgvNotas.AllowUserToResizeRows = false;
             this.dgvNotas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvNotas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvNotas.CausesValidation = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -290,6 +292,17 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvNotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNotas.Cursor = System.Windows.Forms.Cursors.Default;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvNotas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvNotas.Location = new System.Drawing.Point(6, 6);
             this.dgvNotas.Name = "dgvNotas";
             this.dgvNotas.ReadOnly = true;
